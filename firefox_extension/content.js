@@ -13,5 +13,9 @@ browser.runtime.onMessage.addListener((msg) => {
 });
 
 function snapshot() {
-  alert("taking a snapshot...");
+  const buttons = document.querySelectorAll('button[aria-label="More actions"]');
+  buttons.forEach(btn => btn.click());
+
+  const pdfButtons = document.querySelectorAll('div[aria-label="Save to PDF"]');
+  pdfButtons.forEach(btn => btn.click());
 }
