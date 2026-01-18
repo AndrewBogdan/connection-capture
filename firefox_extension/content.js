@@ -18,4 +18,12 @@ function snapshot() {
 
   const pdfButtons = document.querySelectorAll('div[aria-label="Save to PDF"]');
   pdfButtons.forEach(btn => btn.click());
+
+  // Stuff for the CSV
+  const url = window.location.href;
+  const name = document.querySelector("h1").innerText
+  const date = Date.now();
+  const distanceValue = document.querySelector('span.dist-value').innerText;
+
+  alert(`${url}, ${name}, ${date}, ${distanceValue}`);
 }
