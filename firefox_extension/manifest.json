@@ -3,7 +3,7 @@
   "name": "Connection Capture",
   "version": "1.0",
   "description": "Download your contacts from LinkedIn.",
-  "permissions": ["downloads", "scripting","storage", "tabs"],
+  "permissions": ["downloads", "scripting", "storage", "tabs"],
   "host_permissions": ["<all_urls>"],
 
   "background": {

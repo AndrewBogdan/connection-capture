@@ -1,6 +1,3 @@
-// This works but it's annoying.
-// alert("testing!!!")
-
 /*
 Technical Challenges:
 - Upload to the extension a list of text (preferably in a csv)
@@ -10,3 +7,11 @@ Technical Challenges:
 - Save data as files in local extension storage (storage.local)
 - Zip data in local extension storage and download it
  */
+
+browser.runtime.onMessage.addListener((msg) => {
+  if (msg.type === "snapshot") snapshot();
+});
+
+function snapshot() {
+  alert("taking a snapshot...");
+}
