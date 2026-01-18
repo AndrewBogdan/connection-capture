@@ -13,17 +13,30 @@ browser.runtime.onMessage.addListener((msg) => {
 });
 
 function snapshot() {
-  const buttons = document.querySelectorAll('button[aria-label="More actions"]');
-  buttons.forEach(btn => btn.click());
+  const buttons = document.querySelectorAll(
+    'button[aria-label="More actions"]',
+  );
+  buttons.forEach((btn) => btn.click());
 
   const pdfButtons = document.querySelectorAll('div[aria-label="Save to PDF"]');
-  pdfButtons.forEach(btn => btn.click());
+  pdfButtons.forEach((btn) => btn.click());
 
   // Stuff for the CSV
-  const url = window.location.href;
-  const name = document.querySelector("h1").innerText
+  const url = new URL(window.location.href);
+  const cleanUrl = url.origin + url.pathname;
+  const name = document.querySelector("h1").innerText;
   const date = Date.now();
-  const distanceValue = document.querySelector('span.dist-value').innerText;
+  const distanceValue = document.querySelector("span.dist-value").innerText;
 
-  alert(`${url}, ${name}, ${date}, ${distanceValue}`);
+  pushToCSV(`${cleanUrl}, ${name}, ${date}, ${distanceValue}\n`);
+}
+
+function pushToCSV(string) {
+  browser.storage.local.get("csvData").then((result) => {
+    const existing = result.csvData || "";
+    // TODO: Stub then function because async (???)
+    browser.storage.local
+      .set({ csvData: existing + string })
+      .then((result) => {});
+  });
 }

@@ -6,3 +6,18 @@ document.getElementById("clickBtn").addEventListener("click", async () => {
     browser.tabs.sendMessage(tab.id, { type: "snapshot" });
   });
 });
+
+browser.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.csvData) {
+    document.getElementById("excelData").textContent =
+      `${changes.csvData.newValue}`;
+  }
+});
+
+async function loadCSV() {
+  const result = await browser.storage.local.get("csvData");
+  // TODO: Note that this is a huge HTML injection risk
+  document.getElementById("excelData").textContent = result.csvData;
+}
+
+loadCSV(); // load immediately
