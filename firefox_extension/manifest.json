@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Connection Capture",
+  "version": "1.0",
+
+  "description": "Download your contacts from LinkedIn.",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.linkedin.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
